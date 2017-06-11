@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="intro-header">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <h1>Library Manager</h1>
+                    <h3>A customer, inventory and order management application.</h3>
+                    <hr class="intro-divider">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row text-justify large-screen-buttons">
+    <br />
+    <div class="col-md-12">
+        <div class="btn-group btn-group-justified landing-buttons">
+            @Html.ActionLink("Customers", "Index", "Customers", null, new { @class = "btn  btn-lg btn-success" })
+            @Html.ActionLink("Catalouge", "Index", "Books", null, new { @class = "btn btn-lg btn-success" })
+            @Html.ActionLink("Rentals", "New", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+            @Html.ActionLink("Returns", "Return", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+            @Html.ActionLink("Outstanding", "Index", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+        </div>
+    </div>
+</div>
+
+<div class="row text-justify small-screen-buttons hidden">
+    <br />
+    <div class="col-sm-12">
+        <div class="btn-group btn-group-justified landing-buttons">
+            @Html.ActionLink("Customers", "Index", "Customers", null, new { @class = "btn  btn-lg btn-success" })
+            @Html.ActionLink("Catalouge", "Index", "Books", null, new { @class = "btn btn-lg btn-success" })
+        </div>
+    </div>
+</div>
+
+<div class="row text-justify small-screen-buttons hidden">
+    <br />
+    <div class="col-sm-12">
+        <div class="btn-group btn-group-justified landing-buttons">
+            @Html.ActionLink("Rentals", "New", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+            @Html.ActionLink("Returns", "Return", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+        </div>
+    </div>
+</div>
+
+<div class="row text-justify small-screen-buttons hidden">
+    <br />
+    <div class="col-sm-12">
+        <div class="btn-group btn-group-justified landing-buttons">
+            @Html.ActionLink("Outstanding", "Index", "Rentals", null, new { @class = "btn btn-lg btn-success" })
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            if ($(window).width() < 800) {
+                $(".small-screen-buttons").removeClass("hidden");
+                $(".large-screen-buttons").addClass("hidden");
+            }
+
+            window.onresize = function () {
+                if ($(window).width() > 800) {
+                    $(".small-screen-buttons").addClass(" hidden");
+                    $(".large-screen-buttons").removeClass("hidden");
+                } else {
+                    $(".small-screen-buttons").removeClass("hidden");
+                    $(".large-screen-buttons").addClass(" hidden");
+                }
+            }
+        });
+    </script>    
+}
+

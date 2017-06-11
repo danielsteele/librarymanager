@@ -1,0 +1,18 @@
+﻿@model LibraryManager.Models.Book
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@*@Html.ActionLink("")*@
+
+<ul>
+    <li>Author: @Model.AuthorName</li>
+    <li>Published: @Model.PublishDate.Year</li>
+    <li>Genre: @Model.Genre.Name</li>
+    <li>Date Added: @Model.DateAdded.ToShortDateString()</li>
+    <li>Number in Stock: @Model.NumberInStock</li>
+</ul>
+

@@ -1,0 +1,23 @@
+﻿    <div id="topnav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Library Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="navlinks">@Html.ActionLink("Customers", "Index", "Customers")</li>
+                <li id="navlinks">@Html.ActionLink("Catalogue", "Index", "Books")</li>
+                <li id="navlinks">@Html.ActionLink("Rentals", "New", "Rentals")</li>
+                <li id="navlinks">@Html.ActionLink("Returns", "Return", "Rentals")</li>
+                <li id="navlinks">@Html.ActionLink("Outstanding", "Index", "Rentals")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
