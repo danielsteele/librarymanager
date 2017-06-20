@@ -5,6 +5,18 @@ using System.Web;
 using LibraryManager.Models;
 using System.ComponentModel.DataAnnotations;
 
+/// <summary>
+///  The BookFormViewModel is a model built 
+///  specifically for the BookForm View.
+///   
+///   It includes data from the Book and Genre 
+///   classes.
+///   
+///   The BookFormViewModel is passed to the
+///   BookForm.cshtml View by the Books Controller.
+///  
+/// </summary>
+
 namespace LibraryManager.ViewModels
 {
     public class BookFormViewModel

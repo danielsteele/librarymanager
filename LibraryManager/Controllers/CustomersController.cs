@@ -6,6 +6,20 @@ using System.Web.Mvc;
 using LibraryManager.Models;
 using LibraryManager.ViewModels;
 
+/// <summary>
+///  The Customers Controller handles http requests and
+///  invokes the corresponding action for :
+///   [GET] /customers/index
+///   [GET] /customers/details/id
+///   [GET] /customerss/new
+///   [GET] /customers/edit/id
+///   [POST] /customers/save
+///
+///  The Customers Controller maintains a reference to the 
+///  database - ApplicationDbContext _context and makes
+///  changes based on requests and post data.
+/// </summary>
+
 namespace LibraryManager.Controllers
 {
     public class CustomersController : Controller

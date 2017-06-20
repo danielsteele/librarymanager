@@ -8,6 +8,20 @@ using LibraryManager.Models;
 using LibraryManager.Migrations;
 using LibraryManager.ViewModels;
 
+/// <summary>
+///  The Books Controller handles http requests and
+///  invokes the corresponding action for :
+///   /books/index
+///   /books/details/id
+///   /books/new
+///   /books/edit/id
+///   /books/save
+///
+///  The Books Controller maintains a reference to the 
+///  database - ApplicationDbContext _context and makes
+///  changes based on requests and post data.
+/// </summary>
+
 namespace LibraryManager.Controllers
 {
     public class BooksController : Controller
