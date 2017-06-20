@@ -6,6 +6,13 @@ using System.Web;
 
 namespace LibraryManager.Models
 {
+    /*
+        Model a rental event.
+        One customer, One book. 
+        DateRented is required upon the original creation of the rental event.
+        DateReturned is optional and is entered when the book is returned.
+    */
+
     public class Rental
     {
         public int Id { get; set; }

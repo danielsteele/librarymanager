@@ -8,19 +8,19 @@ namespace LibraryManager.Controllers
 {
     public class RentalsController : Controller
     {
-        // GET: Rentals
+        // GET rentals
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Rentals/New
+        // GET rentals/new
         public ActionResult New()
         {
             return View();
         }
 
-        // GET: Rentals/Return
+        // GET rentals/return
         public ActionResult Return()
         {
             return View();

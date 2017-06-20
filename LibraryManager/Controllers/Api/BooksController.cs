@@ -19,6 +19,7 @@ namespace LibraryManager.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        // GET api/books
         public IEnumerable<BookDto> GetBooks(string query = null)
         {
             var booksQuery = _context.Books
@@ -33,14 +34,9 @@ namespace LibraryManager.Controllers.Api
             return booksQuery
                 .ToList()
                 .Select(Mapper.Map<Book, BookDto>);
-
-
-            //return _context.Books
-            //    .Include(b => b.Genre)
-            //    .ToList()
-            //    .Select(Mapper.Map<Book, BookDto>);
         }
 
+        // GET api/books/1
         public IHttpActionResult GetBook(int id)
         {
             var book = _context.Books.SingleOrDefault(c => c.Id == id);
@@ -53,6 +49,7 @@ namespace LibraryManager.Controllers.Api
             return Ok(Mapper.Map<Book, BookDto>(book));
         }
 
+        // POST api/books/create
         [HttpPost]
         [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult CreateBook(BookDto bookDto)
@@ -70,6 +67,7 @@ namespace LibraryManager.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + book.Id), bookDto);
         }
 
+        // PUT api/books/update/1
         [HttpPut]
         [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult UpdateBook(int id, BookDto bookDto)
@@ -93,6 +91,7 @@ namespace LibraryManager.Controllers.Api
             return Ok();
         }
 
+        // DELETE api/books/1
         [HttpDelete]
         [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult DeleteBook(int id)

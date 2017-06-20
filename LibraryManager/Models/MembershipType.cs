@@ -5,6 +5,11 @@ using System.Web;
 
 namespace LibraryManager.Models
 {
+    /*
+        Model the various membership types that can be applied to a customer.
+        Membership Types: Child, Standard, Senior.
+    */
+
     public class MembershipType
     {
         public byte Id { get; set; }

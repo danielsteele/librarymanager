@@ -6,6 +6,12 @@ using System.Web;
 
 namespace LibraryManager.Models
 {
+    /*
+        Model the library's customers.
+        Provide validation attributes.
+        Many to one relationship with the MembershipType table.
+    */
+
     public class Customer
     {
         public int Id { get; set; }

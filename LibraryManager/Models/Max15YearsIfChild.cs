@@ -6,6 +6,13 @@ using System.Web;
 
 namespace LibraryManager.Models
 {
+    /*
+        Validation class that is applied to a new customer upon account creation.
+        Verify that a BirthDate value has been entered.
+        Verify that if the Child membership type has been selected that the new
+        customer is not older than 15 years.
+    */
+
     public class Max15YearsIfChild : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

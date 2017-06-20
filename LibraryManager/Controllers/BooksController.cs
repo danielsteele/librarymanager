@@ -24,8 +24,7 @@ namespace LibraryManager.Controllers
             _context.Dispose();
         }
 
-        // GET: Books
-
+        // GET /books/index
         public ActionResult Index()
         {
             if (User.IsInRole(RoleName.CanManageBooks))
@@ -36,6 +35,7 @@ namespace LibraryManager.Controllers
             return View("ReadOnlyIndex");
         }
 
+        // GET /books/details/1
         public ActionResult Details(int id)
         {
             var book = _context.Books.Include(b => b.Genre).SingleOrDefault(b => b.Id == id);
@@ -48,6 +48,7 @@ namespace LibraryManager.Controllers
             return View(book);
         }
 
+        // GET /books/new
         [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult New()
         {
@@ -61,6 +62,7 @@ namespace LibraryManager.Controllers
             return View("BookForm", viewModel);
         }
 
+        // GET /books/edit/1
         [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Edit(int id)
         {
@@ -79,10 +81,12 @@ namespace LibraryManager.Controllers
             return View("BookForm", viewModel);
         }
 
+        // POST /books/save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Book book)
         {
+            // the book object is stored in the request body
             if (!ModelState.IsValid)
             {
                 var viewModel = new BookFormViewModel(book)

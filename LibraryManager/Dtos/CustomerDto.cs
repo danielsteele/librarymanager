@@ -21,8 +21,6 @@ namespace LibraryManager.Dtos
 
         public string Name => FirstName + " " + LastName;
 
-        //[Min65YearsIfSenior]
-        //[Max15YearsIfChild]
         public DateTime? BirthDate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }

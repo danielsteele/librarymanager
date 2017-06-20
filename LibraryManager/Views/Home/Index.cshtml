@@ -60,26 +60,44 @@
     </div>
 </div>
 
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
+@{ 
+    Random rnd = new Random();
+    int test7 = rnd.Next(1, 5);
 
-            if ($(window).width() < 800) {
-                $(".small-screen-buttons").removeClass("hidden");
-                $(".large-screen-buttons").addClass("hidden");
-            }
+    Dictionary<int, string> dictionary = new Dictionary<int, string>
+        {
+        { 1, "one" },
+        { 2, "two" },
+        { 3, "three" },
+        { 4, "four" }
+    };
 
-            window.onresize = function () {
-                if ($(window).width() > 800) {
-                    $(".small-screen-buttons").addClass(" hidden");
-                    $(".large-screen-buttons").removeClass("hidden");
-                } else {
-                    $(".small-screen-buttons").removeClass("hidden");
-                    $(".large-screen-buttons").addClass(" hidden");
-                }
-            }
-        });
-    </script>    
+    string output = dictionary[test7];
 }
+
+<p id="test7">@output</p>
+
+
+        @section scripts
+{
+            <script>
+                $(document).ready(function () {
+
+                    if ($(window).width() < 800) {
+                        $(".small-screen-buttons").removeClass("hidden");
+                        $(".large-screen-buttons").addClass("hidden");
+                    }
+
+                    window.onresize = function () {
+                        if ($(window).width() > 800) {
+                            $(".small-screen-buttons").addClass(" hidden");
+                            $(".large-screen-buttons").removeClass("hidden");
+                        } else {
+                            $(".small-screen-buttons").removeClass("hidden");
+                            $(".large-screen-buttons").addClass(" hidden");
+                        }
+                    }
+                });
+            </script>
+        }
 

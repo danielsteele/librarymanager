@@ -22,6 +22,7 @@ namespace LibraryManager.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        // GET /api/rentals
         public IHttpActionResult GetRentals(string query = null)
         {
             var rentalsQuery = _context.Rentals
@@ -39,13 +40,9 @@ namespace LibraryManager.Controllers.Api
                 .Select(Mapper.Map<Rental, RentalDto>);
 
             return Ok(rentalDtos);
-
-            //return _context.Books
-            //    .Include(b => b.Genre)
-            //    .ToList()
-            //    .Select(Mapper.Map<Book, BookDto>);
         }
 
+        // POST /api/rentals/create
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
@@ -94,6 +91,7 @@ namespace LibraryManager.Controllers.Api
             return Ok();
         }
 
+        // PUT /api/rentals/update
         [HttpPut]
         public IHttpActionResult UpdateNewRentals(NewRentalDto rentalDto)
         {

@@ -22,6 +22,48 @@ namespace LibraryManager.Controllers
             _context.Dispose();
         }
 
+        // GET customers/index
+        public ActionResult Index()
+        {
+            // now an ajax request is sent from the client to the api that fetches
+            // the list of customers
+            return View();
+        }
+
+        // GET customers/details/1
+        public ActionResult Details(int id)
+        {
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(customer);
+        }
+
+        // GET customers/edit/1
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                HeadingTitle = "Edit Customer",
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
+        // GET customers/new
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -35,6 +77,7 @@ namespace LibraryManager.Controllers
             return View("CustomerForm", viewModel);
         }
 
+        // POST customers/save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
@@ -42,6 +85,8 @@ namespace LibraryManager.Controllers
             // validation
             if (!ModelState.IsValid)
             {
+                // customer object is placed in the request body
+
                 // if the model state is not valid, return the same view
                 var viewModel = new CustomerFormViewModel
                 {
@@ -69,52 +114,9 @@ namespace LibraryManager.Controllers
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
 
-
-            //it's not written to the db yet, it's just in memory
-            //to persist the changes you need to call ...
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
-        }
-
-        public ActionResult Index()
-        {
-            // now an ajax request is sent from the client to the api that fetches
-            // the list of customers, so we don't need this here
-            //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            //return View(customers);
-            return View();
-        }
-
-        public ActionResult Details(int id)
-        {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(customer);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-
-            var viewModel = new CustomerFormViewModel()
-            {
-                Customer = customer,
-                HeadingTitle = "Edit Customer",
-                MembershipTypes = _context.MembershipTypes.ToList()
-            };
-
-            return View("CustomerForm", viewModel);
         }
     }
 }

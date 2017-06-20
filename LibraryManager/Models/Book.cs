@@ -6,6 +6,11 @@ using System.Web;
 
 namespace LibraryManager.Models
 {
+    /*
+        Model the Books that exist in the library.
+        Provide validation attributes.
+        Many to one relationship with the Genre table.
+    */
     public class Book
     {
         public int Id { get; set; }

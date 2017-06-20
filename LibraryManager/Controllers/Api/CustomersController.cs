@@ -23,7 +23,6 @@ namespace LibraryManager.Controllers.Api
         // GET /api/customers
         public IHttpActionResult GetCustomers(string query = null)
         {
-            //return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
             var customersQuery = _context.Customers
                 .Include(c => c.MembershipType);
 
@@ -46,7 +45,6 @@ namespace LibraryManager.Controllers.Api
 
             if (customer == null)
             {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
             }
 
@@ -57,9 +55,10 @@ namespace LibraryManager.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
+            // customerdto object is placed in the request body
+
             if (!ModelState.IsValid)
             {
-                //throw new HttpResponseException(HttpStatusCode.BadRequest);
                 return BadRequest();
             }
 
@@ -77,25 +76,20 @@ namespace LibraryManager.Controllers.Api
         [HttpPut]
         public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
+            // id comes from the url, customerdto in the request body
+
             if (!ModelState.IsValid)
             {
-                //throw new HttpResponseException(HttpStatusCode.BadRequest);
                 return BadRequest();
             }
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
             }
 
             Mapper.Map<CustomerDto, Customer>(customerDto, customerInDb);
-            //customerInDb.FirstName = customerDto.FirstName;
-            //customerInDb.LastName = customerDto.LastName;
-            //customerInDb.BirthDate = customerDto.BirthDate;
-            //customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
-            //customerInDb.MembershipTypeId = customerDto.MembershipTypeId;
 
             _context.SaveChanges();
 
@@ -109,7 +103,6 @@ namespace LibraryManager.Controllers.Api
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
             }
 

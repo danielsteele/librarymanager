@@ -10,7 +10,6 @@ namespace LibraryManager.ViewModels
     public class BookFormViewModel
     {
         public IEnumerable<Genre> Genres { get; set; }
-        //public Book Book { get; set; }
 
         public int? Id { get; set; }
 
